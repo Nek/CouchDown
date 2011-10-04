@@ -1,1 +1,10 @@
-{}
+{
+  "env" : {
+    "remote" : {
+      "db" : "http://someoneimportant:TKlkfxohGLIs08eHgW@editor.iriscouch.com:5984/editor"
+    },
+    "default" : {
+      "db" : "http://admin:123@localhost:5984/editor"
+    }
+  }
+}

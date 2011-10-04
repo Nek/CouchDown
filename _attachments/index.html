@@ -2,28 +2,34 @@
 <html>
   <head>
     <title>My New CouchApp</title>
+    <link href='http://fonts.googleapis.com/css?family=PT+Serif+Caption|PT+Sans:400,700,400italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="style/main.css" type="text/css">
   </head>
   <body>
-    <div id="account"></div>
-
-    <h1>Generated CouchApp</h1>
-
-    <div id="profile"></div>
-    <div id="items"></div>
-
-    <div id="sidebar">
-      <p>Edit welcome message.</p>
-      <p>Ideas: You could easily turn this into a photo sharing app, or a grocery list, or a chat room.</p>
+  <div id="wrapper">
+    <div id="paper">
+      <div id="welcome">
+        <h1 class="welcome">Words are everywhere!</h1><p>You've got to make a long way to find a place without words around you but still you'll have words in your head. Sometimes there are words you want to get out of it and put them in a written form. Do it here using an easy to learn and use markdown editor.</p>
+        <button id="make_note" class="minimal">Make A Note</a>
+      </div>
     </div>
+  </div>
   </body>
   <script src="vendor/couchapp/loader.js"></script>
   <script type="text/javascript" charset="utf-8">
     $.couch.app(function(app) {
-      $("#account").evently("account", app);
-      $("#profile").evently("profile", app);
-      $.evently.connect("#account","#profile", ["loggedIn","loggedOut"]);
-      $("#items").evently("items", app);
+      var db = app.db;
+      $("#make_note").evently({
+        click : function() {
+          db.saveDoc(
+            {content: "Test content"},
+            {success: function(resp) {
+                console.log(resp);
+                window.location = db.uri+"_design/editor/_show/editor/"+resp.id;
+            }}
+          );  
+        }
+      });
     });
   </script>
 </html>
