@@ -1,0 +1,61 @@
+<html><head>
+	<title>{{title}}</title>
+	<link href='http://fonts.googleapis.com/css?family=PT+Serif+Caption|PT+Sans:400,700,400italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="{{asset_path}}/style/main.css" >
+	  <script src="https://raw.github.com/coreyti/showdown/master/compressed/showdown.js"></script>
+	  <script type="text/javascript" src="/_utils/script/sha1.js"></script>
+	  <script type="text/javascript" src="/_utils/script/json2.js"></script>
+	  <script type="text/javascript" src="/_utils/script/jquery.js"></script>
+	  <script type="text/javascript" src="/_utils/script/jquery.couch.js"></script>
+	  <script type="text/javascript" src="../../vendor/couchapp/jquery.couch.app.js"></script>
+	  <script type="text/javascript" src="../../vendor/couchapp/jquery.couch.app.util.js"></script>
+	  <script type="text/javascript" src="../../vendor/couchapp/jquery.mustache.js"></script>
+	  <script type="text/javascript" src="../../vendor/couchapp/jquery.evently.js"></script>
+	<script>
+		$.couch.app(
+			function(app){
+				var db = app.db;
+				var converter = new Showdown.converter();
+				var input;
+				var output;
+				var id = "{{title}}";
+				var rev = "{{rev}}";
+				var timeout = -1;
+				input = document.getElementById("ta");
+				output = document.getElementById("md");
+				input.value = unescape("{{content}}");
+
+				render = function() {
+					output.innerHTML = converter.makeHtml(input.value);
+					clearTimeout(timeout);
+					timeout = setTimeout(
+						function(){
+						db.saveDoc(
+							{_id: id, _rev: rev, content:input.value}, 
+							{
+								success: function(res) {
+									console.log(res);
+									rev = res.rev;
+								}
+							}
+							)
+						}
+						, 1000);
+				};
+
+				$("#ta").bind("keyup", render);
+				render();
+			}
+		);		
+	</script>
+</head>
+<body style="" >
+<div id="input_wrapper" >
+<textarea id="ta"></textarea></div>
+<div id="md_wrapper" ><div id="md" ><h1>Test</h1>
+<h2>test</h2>
+<p>test paragrpah</p></div></div>
+
+</body>
+
+</html>
