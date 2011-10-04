@@ -1,0 +1,17 @@
+[
+    {
+      "from": "/edit/:doc",
+      "to": "_show/editor/:doc",
+      "method": "GET"
+    },
+    {
+      "from": "*",
+      "to": "index.html",
+      "method": "GET"
+    },
+    {
+      "from": "/",
+      "to": "index.html",
+      "method": "GET"
+    }
+]
