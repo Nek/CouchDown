@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>My New CouchApp</title>
+    <title>Word by Word</title>
     <link href='http://fonts.googleapis.com/css?family=PT+Serif+Caption|PT+Sans:400,700,400italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="style/main.css" type="text/css">
   </head>
@@ -19,17 +19,26 @@
   <script type="text/javascript" charset="utf-8">
     $.couch.app(function(app) {
       var db = app.db;
+      console.log(app);
       $("#make_note").evently({
         click : function() {
           db.saveDoc(
-            {content: "Test content"},
-            {success: function(resp) {
-                console.log(resp);
-                window.location = db.uri+"_design/editor/_show/editor/"+resp.id;
-            }}
+            {content: ""},
+            { success: function(resp) {
+                console.log("Success: ", resp);
+                window.location = "/edit/"+resp.id;
+            },
+              error: function(resp) {
+                console.log("Error: ", resp);
+              }
+            }
           );  
         }
-      });
+      }
+  )}, 
+    {
+      db: "editor",
+      design: "editor"
     });
   </script>
 </html>

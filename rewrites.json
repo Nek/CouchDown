@@ -1,17 +1,31 @@
 [
+
     {
-      "from": "/edit/:doc",
-      "to": "_show/editor/:doc",
-      "method": "GET"
+      "from": "editor/_design/editor",
+      "to": "/"
+    },
+    {
+      "from": "",
+      "to": "index.html"
+    },
+    {
+      "from": "editor/",
+      "to": "../../"
+    },
+    {
+      "from": "editor/:id",
+      "to": "../../:id"
+    },
+    {
+      "from": "/edit/:id",
+      "to": "/_show/editor/:id"
+    },
+    {
+      "from": "editor/_design/editor/style/:file",
+      "to": "/style/:file"
     },
     {
       "from": "*",
-      "to": "index.html",
-      "method": "GET"
-    },
-    {
-      "from": "/",
-      "to": "index.html",
-      "method": "GET"
+      "to": "*"
     }
 ]
