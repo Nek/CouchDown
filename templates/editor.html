@@ -2,6 +2,19 @@
 	<title>{{title}}</title>
 	<link href='http://fonts.googleapis.com/css?family=PT+Serif+Caption|PT+Sans:400,700,400italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="{{asset_path}}/style/main.css" >
+	<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-7101726-7']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 	  <script src="../../vendor/couchapp/showdown.js"></script>
 	  <script type="text/javascript" src="/_utils/script/sha1.js"></script>
 	  <script type="text/javascript" src="/_utils/script/json2.js"></script>
@@ -59,9 +72,7 @@
 <body style="" >
 <div id="input_wrapper" >
 <textarea placeholder="Type your markdown here" id="ta"></textarea></div>
-<div id="md_wrapper" ><div id="md" ><h1>Test</h1>
-<h2>test</h2>
-<p>test paragrpah</p></div></div>
+<div id="md_wrapper" ><div id="md"></div></div>
 
 </body>
 
